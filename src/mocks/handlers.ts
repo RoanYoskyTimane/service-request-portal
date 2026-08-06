@@ -1,6 +1,6 @@
 import { http, HttpResponse } from 'msw';
-import { mockRequests, ServiceRequest } from './data';
-import { components } from '../api/schema';
+import { mockRequests, type ServiceRequest } from './data';
+import type { components } from '../api/schema';
 
 let requestsStore = [...mockRequests];
 

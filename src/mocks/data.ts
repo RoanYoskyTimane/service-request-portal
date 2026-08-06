@@ -1,4 +1,4 @@
-import { components } from '../api/schema';
+import type { components } from '../api/schema';
 
 export type ServiceRequest = components['schemas']['ServiceRequest'];
 
