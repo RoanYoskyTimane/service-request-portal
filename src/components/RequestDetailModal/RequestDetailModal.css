@@ -1,0 +1,22 @@
+.detail-modal-body {
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.status-change-box {
+    background-color: #f8fafc;
+    padding: 1rem;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+}
+
+.error-banner {
+    color: #991b1b;
+    background-color: #fee2e2;
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+}
