@@ -1,0 +1,50 @@
+.request-detail-page {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    max-width: 800px;
+    margin: 2rem auto;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 1rem;
+}
+
+.detail-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.detail-info p {
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+}
+
+.status-change-box {
+    background-color: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+}
+
+.status-change-box h4 {
+    margin-bottom: 0.75rem;
+    color: #1e293b;
+}
+
+.error-banner {
+    color: #991b1b;
+    background-color: #fee2e2;
+    padding: 0.75rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    margin-top: 1rem;
+    border: 1px solid #fca5a5;
+}
