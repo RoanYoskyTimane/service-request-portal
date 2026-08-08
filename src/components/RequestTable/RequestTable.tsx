@@ -1,14 +1,11 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { fetchRequests, type ServiceRequest } from '../../api/requestsApi';
+import { useNavigate } from 'react-router';
+import { fetchRequests } from '../../api/requestsApi';
 import './RequestTable.css';
 
-interface RequestTableProps {
-    onSelectRequest: (request: ServiceRequest) => void;
-    onOpenCreateModal: () => void;
-}
-
-export function RequestTable({ onSelectRequest, onOpenCreateModal }: RequestTableProps) {
+export function RequestTable() {
+    const navigate = useNavigate();
     const [search, setSearch] = useState('');
     const [status, setStatus] = useState('');
     const [priority, setPriority] = useState('');
@@ -64,7 +61,7 @@ export function RequestTable({ onSelectRequest, onOpenCreateModal }: RequestTabl
                     </select>
                 </div>
 
-                <button className="btn-primary" onClick={onOpenCreateModal}>+ Criar Pedido</button>
+                <button className="btn-primary" onClick={() => navigate('/requests/new')}>+ Criar Pedido</button>
             </div>
 
             <div className="table-container">
@@ -107,7 +104,7 @@ export function RequestTable({ onSelectRequest, onOpenCreateModal }: RequestTabl
                                     </td>
                                     <td>{new Date(item.createdAt).toLocaleDateString()}</td>
                                     <td>
-                                        <button className="btn-secondary" style={{ padding: '0.25rem 0.5rem' }} onClick={() => onSelectRequest(item)}>
+                                        <button className="btn-secondary" style={{ padding: '0.25rem 0.5rem' }} onClick={() => navigate(`/requests/${item.id}`)}>
                                             Ver Detalhes
                                         </button>
                                     </td>
