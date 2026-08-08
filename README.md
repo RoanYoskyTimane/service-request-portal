@@ -25,6 +25,7 @@ The **Customer Service Request Portal** allows authenticated agents to browse, f
 | **Authentication** | `react-oidc-context` & `oidc-client-ts` | Standardized OIDC client implementation with PKCE support and reactive React state bindings. |
 | **API Mocking** | Mock Service Worker (MSW v2) | Intercepts HTTP requests at the browser network layer without modifying application fetch code. |
 | **Type Safety** | `openapi-typescript` | Generates static TypeScript interfaces directly from `openapi.yaml` to ensure contract compliance. |
+| **Client-Side Routing** | `react-router` (v8) | Enforces route-based view separations, rendering layout routing wrapper and dynamic request loading via URL param queries. |
 | **Testing** | Vitest + React Testing Library | Fast Unit and Component UI testing environment backed by jsdom. |
 | **Styling** | Vanilla CSS | Zero build abstraction, highly predictable, lightweight, and custom design tokens. |
 
@@ -38,10 +39,12 @@ src/
 ├── api/                    # OpenAPI contract types & centralized fetch HTTP client services
 ├── auth/                   # OIDC Provider wrapper and context configuration
 ├── components/             # Reusable UI domain components with isolated Vanilla CSS
-│   ├── CreateRequestModal/
-│   ├── Navbar/
-│   ├── RequestDetailModal/
-│   └── RequestTable/
+│   ├── CreateRequestPage/  # New request page view
+│   ├── LandingPage/        # Login and Authentication gate screen
+│   ├── Navbar/             # Shared header component with Sign Out options
+│   ├── ProtectedLayout/    # Layout router checking OIDC authentication
+│   ├── RequestDetailPage/  # Ticket details and status transition editor
+│   └── RequestTable/       # Ticket search, filtering, and paging feed
 ├── mocks/                  # MSW workers, schema handlers, and local in-memory dataset
 ├── utils/                  # Pure utility functions and domain logic
 ├── App.tsx                 # Core App layout orchestrator
@@ -55,7 +58,7 @@ src/
 
 ### Prerequisites
 
-* **Node.js**: `v20.x` or higher
+* **Node.js**: `v22.x` or higher
 * **npm**: `v10.x` or higher
 
 ### Installation Steps
@@ -168,7 +171,7 @@ The repository contains a continuous integration pipeline (`.github/workflows/ci
 
 ### Pipeline Stages
 
-1. **Checkout & Environment Setup**: Clones the codebase and boots Node.js v20 with npm caching.
+1. **Checkout & Environment Setup**: Clones the codebase and boots Node.js v22 with npm caching.
 2. **Type Verification**: Executes `npx tsc --noEmit` to ensure no ambient or implicit type errors exist.
 3. **Automated Test Suite**: Executes `npm run test` (Vitest) to verify all domain and component assertions pass.
 4. **Production Build**: Executes `npm run build` to verify clean compilation without bundle errors.
@@ -195,5 +198,3 @@ The repository contains a continuous integration pipeline (`.github/workflows/ci
 
 * **In-Memory Mock Persistence**: Since MSW stores created/updated tickets in memory (`data.ts`), refreshing the browser resets modifications back to the base mock dataset.
 * **Static User Scope**: The OIDC user profile is currently evaluated for UI token display; backend authorization scope checking (`403 Forbidden`) is simulated via MSW flags.
-
-```
