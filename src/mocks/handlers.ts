@@ -59,6 +59,9 @@ export const handlers = [
     // 2. GET /requests/:requestId (Detail)
     http.get('/requests/:requestId', ({ params }) => {
         const { requestId } = params;
+        if (requestId === 'new') {
+            return; // Permite que o browser carregue a página de criação (/requests/new) do dev server
+        }
         const item = requestsStore.find((r) => r.id === requestId);
 
         if (!item) {
