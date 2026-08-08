@@ -42,3 +42,9 @@ export async function updateRequestStatus(
 
     return res.json();
 }
+
+export async function fetchRequestById(requestId: string): Promise<ServiceRequest> {
+    const res = await fetch(`/requests/${requestId}`);
+    if (!res.ok) throw new Error('Pedido não encontrado');
+    return res.json();
+}
